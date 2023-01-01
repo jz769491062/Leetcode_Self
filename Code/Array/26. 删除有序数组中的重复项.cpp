@@ -22,3 +22,4 @@ public:
     }
 };
 //https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
+//类似题目: https://leetcode.cn/problems/move-zeroes/description/ , https://leetcode.cn/problems/remove-element/

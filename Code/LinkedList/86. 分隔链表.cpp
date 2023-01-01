@@ -37,3 +37,4 @@ public:
         return small->next;
     }
 };
+//https://leetcode.cn/problems/partition-list/

@@ -22,3 +22,4 @@ public:
         return a;
     }
 };
+//https://leetcode.cn/problems/intersection-of-two-linked-lists/

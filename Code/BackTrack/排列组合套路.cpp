@@ -31,7 +31,9 @@
 组合Combination从入参start开始for遍历保证各种长度的结果都有，所以需要参数int start
 排列Permutation需要used数组保证无重复使用，
 组合Combination需要传参i + 1给start保证无重复使用
-数字可重复时，用sort和used[i] && nums[i] == nums[i - 1]
+数字可重复时，用sort和
+排列用 i > 0 && nums[i] == nums[i - 1] && !used[i - 1] // 注意used[i - 1]，不是used[i]!
+组合用 i > start && candidates[i] == candidates[i - 1]
 子集问题直接pushback，然后使用数组相对顺序，currIndex+1，确保子集不重复 https://leetcode.cn/problems/subsets/
 组合和子集是一样的：大小为 k 的组合就是大小为 k 的子集。
 // 新添加的剪枝逻辑，固定相同的元素在排列中的相对位置

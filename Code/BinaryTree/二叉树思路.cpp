@@ -8,4 +8,9 @@
 后序是左右两子树都算完后，递归开始向上累加；
 中序是得到一边子树的结果后，处理一下，继续看另一边子树。
 
+也要善用变量来帮助自己保存左右子树的结果。例如：
+TreeNode* l = invertTree(root->left);
+这样的好处，就是可以直接放心对root->left或right操作了：
+root->left = r;
+root->right = l;
 */

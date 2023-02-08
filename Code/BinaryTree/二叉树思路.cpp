@@ -13,4 +13,11 @@ TreeNode* l = invertTree(root->left);
 这样的好处，就是可以直接放心对root->left或right操作了：
 root->left = r;
 root->right = l;
+
+中序遍历左中右，就是BST的升序排序；中序遍历右中左，就是BST的降序排序。230题
+
+在BST每个节点记录以自己为根的这棵二叉树有多少个节点size，可以知道节点的排名，以此可以根据排名logN获取对应数字
+要找排名k, 当前排名/size是m, k < m 则左子树找第k个，k > m 就去右子树找第k - (m + 1)个
+看538题、1038题
+
 */

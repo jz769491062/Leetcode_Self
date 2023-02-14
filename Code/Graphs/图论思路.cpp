@@ -14,5 +14,27 @@
 https://labuladong.gitee.io/algo/images/%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f/2.jpeg
 https://labuladong.gitee.io/algo/images/%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f/3.jpeg
 
+二分图：分成两组，组内元素互不相连。或者说每个点涂两种颜色，同色点不相连。
+二分图有啥用？
+某些场景可以更高效存储数据：
+    比如电影和演员的映射可以是map<string, list<string>>，那如果要找演员出演了哪些电影呢？自然就构成一幅二分图了。
+高级算法中最大流有用
+图遍历框架
+void traverse(Graph graph, boolean[] visited, int v) {
+    visited[v] = true;
+    // 遍历节点 v 的所有相邻节点 neighbor
+    for (int neighbor : graph.neighbors(v)) {
+        if (!visited[neighbor]) {
+            // 相邻节点 neighbor 没有被访问过
+            // 那么应该给节点 neighbor 涂上和节点 v 不同的颜色
+            traverse(graph, visited, neighbor);
+        } else {
+            // 相邻节点 neighbor 已经被访问过
+            // 那么应该比较节点 neighbor 和节点 v 的颜色
+            // 若相同，则此图不是二分图
+        }
+    }
+}
+
 
 */

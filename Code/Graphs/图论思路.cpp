@@ -42,5 +42,12 @@ Kruskal最小生成树算法：
 否则，这条边不是最小生成树的一部分，不要把它加入mst集合。
 也就是可以用并查集方便地实现。
 
+Kruskal利用了UF并查集算法避免环，而Prim则利用了BFS和visited避免环。两者都用到贪心算法。
+Kruskal就是边从小到大依次尝试加入MST，有环就不加入这条边。O(mlogn), n是节点，m是max(nodes, edges).
+Prim的切分定理：把图切成两部分非空的节点们，切到的边叫"横切边"。
+对于任意一种「切分」，其中权重最小的那条「横切边」一定是构成最小生成树的一条边。
+Prim的切分就是按照BFS顺序来推进的。也需要inMST bool数组，确保横切边没重复计算进MST。毕竟cut({A, B, C}) = cut({A, B}) + cut({C}) - [cut({A,B}) ^cut({C}) ]
+Prim用priority_queue存储，然后处理O(E)个边，每次O(logE)，运行时间就是O(ElogE).优化点在pq的实现上. 可能劣化到O(E^2)?
+稠密图用Prim，稀疏图用Kruskal
 
 */

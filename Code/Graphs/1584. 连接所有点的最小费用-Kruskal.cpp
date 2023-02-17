@@ -1,5 +1,6 @@
 class Solution {//https://mp.weixin.qq.com/s/dJ9gqR3RVoeGnATlpMG39w
 public:// https://leetcode.cn/problems/min-cost-to-connect-all-points/description/
+// 本题m == n^2 所以O(n^2logn)
     int minCostConnectPoints(vector<vector<int>>& points) {
         // 算一下曼哈顿距离，剩下的就是Kruskal算法，和1135一致
         int n = points.size();
@@ -8,8 +9,6 @@ public:// https://leetcode.cn/problems/min-cost-to-connect-all-points/descriptio
         for (int i = 0; i < n; i++) {
             // 注意从i + 1开始即可，不要走回头路，就是全连接了
             for (int j = i + 1; j < n; j++) {
-                points[i].resize(3);
-                points[j].resize(3);
                 int x1 = points[i][0], x2 = points[j][0];
                 int y1 = points[i][1], y2 = points[j][1];
                 int dist = abs(x2 - x1) + abs(y2 - y1);

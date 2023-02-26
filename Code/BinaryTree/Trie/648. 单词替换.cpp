@@ -1,8 +1,30 @@
-// https://leetcode.cn/problems/implement-trie-prefix-tree/
-class Trie
-{
+// https://leetcode.cn/problems/replace-words/description/
+class Solution {
 public:
-    // TrieMap: key是字符串，value任意
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        TrieSet* mySet = new TrieSet();
+        for (string& s: dictionary) {
+            mySet->add(s);
+        }
+        istringstream iss(sentence);
+        string res;
+        while(iss) {
+            string curr;
+            iss >> curr;
+            string temp = mySet->shortestPrefixOf(curr);
+            res += " ";
+            if (temp != "") {
+                res += temp;
+            } else {
+                // 完全没匹配，加入原词即可
+                res += curr;
+            }
+        }
+        res.erase(res.begin());
+        res.erase(res.end() - 1);
+        return res;
+    }
+
     template <class V>
     class TrieMap
     {
@@ -235,7 +257,7 @@ public:
                     // 如果这个节点存储着 val，则找到一个匹配的键
                     res.push_back(path);
                 }
-                return; // 注意无论节点有无val, 这里就return
+                return;
             }
             char c = pattern[i];
             if (c == '.')
@@ -423,32 +445,4 @@ public:
             return map.Size();
         }
     };
-    //////////////////////////////////////////////////////////////////
-    TrieSet *mySet = new TrieSet();
-    Trie()
-    {
-    }
-
-    void insert(string word)
-    {
-        mySet->add(word);
-    }
-
-    bool search(string word)
-    {
-        return mySet->contains(word);
-    }
-
-    bool startsWith(string prefix)
-    {
-        return mySet->hasKeyWithPrefix(prefix);
-    }
 };
-
-/**
- * Your Trie object will be instantiated and called as such:
- * Trie* obj = new Trie();
- * obj->insert(word);
- * bool param_2 = obj->search(word);
- * bool param_3 = obj->startsWith(prefix);
- */

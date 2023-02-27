@@ -1,4 +1,4 @@
-vector<int> NextGreaterElement(vector<int> nums) {
+vector<int> NextGreaterElement(vector<int>& nums) {
     vector<int> greater(nums.size());
     stack<int> s;
     // 单调栈模板

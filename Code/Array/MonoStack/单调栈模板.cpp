@@ -10,7 +10,7 @@ vector<int> NextGreaterElement(vector<int>& nums) {
         }
         // 这样子，还留在栈里的元素必然是大于当前元素的
         // 再加上是倒着数组遍历，单调栈元素也是按照数组倒序入栈，所以留在栈顶的就是最近的那个更大元素
-        greater[i] = s.empty() ? -1 : i;
+        greater[i] = s.empty() ? -1 : s.top();
         s.push(nums[i]);
     }
     return greater;

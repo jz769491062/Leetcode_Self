@@ -39,12 +39,10 @@ public:
         // 每个节点做什么？交换左右节点。
         // 什么顺序？后序显然可以，完成左右子树的交换后，得到左右节点，然后直接换。
         if (!root) return NULL;
-        TreeNode* l = invertTree(root->left);
-        TreeNode* r = invertTree(root->right);
-        root->left = r;
-        root->right = l;
+        invertTree(root->left);
+        invertTree(root->right);
+        swap(root->left, root->right);
         return root;
-
     }
 };
 

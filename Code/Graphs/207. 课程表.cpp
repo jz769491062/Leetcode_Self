@@ -46,3 +46,37 @@ bool hasCycle = false;//发现走了回头路就标记
         return hasCycle == false; // 无环就可以完成全部课程
     }
 };// https://leetcode.cn/problems/course-schedule/description/
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int, set<int>> adjList;
+        for (vector<int>& v : prerequisites) {
+            adjList[v[0]].insert(v[1]);
+        }
+        vector<int> visited(numCourses);
+        for (int i = 0; i < numCourses; i++) {
+            if (dfs(adjList, visited, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool dfs( unordered_map<int, set<int>>& adjList,  vector<int>& visited, int idx) {
+        if (visited[idx] == 1) {
+            return true;
+        }
+        if (visited[idx] == 2) {
+            return false;
+        }
+        visited[idx] = 1;
+        for (int neighbor : adjList[idx]) {
+            if (dfs(adjList, visited, neighbor)) {
+                return true;
+            }
+        }
+        visited[idx] = 2;
+        return false;
+    }
+};

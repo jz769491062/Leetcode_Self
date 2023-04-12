@@ -124,3 +124,34 @@ vector<int> preorder(Node* root) {
 二分图
 获得问题所有的解（回溯）
 
+11 建图：
+vector<vector<int>> adjList(n);
+for (vector<int>&v : edges) {
+    adjList[v[0]].push_back(v[1]);
+    adjList[v[1]].push_back(v[0]);
+}
+vector<bool> visited(n);
+if (!visited) dfs......
+
+12 visited数组也可以用Int，有-1代表从未访问过
+
+13 检测图中有环，还可以把visited重置为false，协助判断是否回到了原点。
+/**
+* @return 从顶点 u 出发的所有路径是不是有一条能够回到 u，有回路就返回 true
+*/
+private boolean dfs(int u, int[][] graph) {
+if (visited[u] != null) {
+    return visited[u];
+}
+// 先默认从 u 出发的所有路径有回路
+visited[u] = true;
+// 结点 u 的所有后继结点都不能回到自己，才能认为结点 u 是安全的
+for (int successor : graph[u]) {
+    if (dfs(successor, graph)) {
+        return true;
+    }
+}
+// 注意：这里需要重置
+visited[u] = false;
+return false;
+}

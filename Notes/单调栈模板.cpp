@@ -15,3 +15,6 @@ vector<int> NextGreaterElement(vector<int>& nums) {
     }
     return greater;
 }
+
+可以直接把之前单调栈计算过的结果保存进栈，stack<pair<int, int>>这样。
+901. 股票价格跨度
